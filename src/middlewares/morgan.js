@@ -1,5 +1,7 @@
 const morgan = require("morgan");
 const logger = require("../utilities/logger");
+// eslint-disable-next-line import/no-unresolved
+require("dotenv").config();
 
 const stream = {
     // Use the http severity

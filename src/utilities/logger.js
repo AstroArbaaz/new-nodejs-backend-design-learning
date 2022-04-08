@@ -1,4 +1,8 @@
 const winston = require("winston");
+
+// eslint-disable-next-line import/no-unresolved
+require("dotenv").config();
+
 // Define your severity levels.
 // With them, You can create log files,
 // see or hide levels based on the running ENV.

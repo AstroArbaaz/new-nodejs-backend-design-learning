@@ -19,7 +19,9 @@
     "MongoDB",
     "Redis",
     "Sockets",
-    "Rest-API"
+    "Rest-API",
+    "Morgan",
+    "Winston"
   ],
   "author": "Arbaaz",
   "license": "ISC",
