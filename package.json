@@ -1,0 +1,46 @@
+{
+  "name": "new-nodejs-backend-design-learning",
+  "version": "1.0.0",
+  "description": "Building nodejs backend, rest api boilerplate with updated design and folder structure with TDD and Dockerizing the project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AstroArbaaz/new-nodejs-backend-design-learning.git"
+  },
+  "keywords": [
+    "Docker",
+    "Nodejs",
+    "Expressjs",
+    "MongoDB",
+    "Redis",
+    "Sockets",
+    "Rest-API",
+    "Morgan",
+    "Winston"
+  ],
+  "author": "Arbaaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AstroArbaaz/new-nodejs-backend-design-learning/issues"
+  },
+  "homepage": "https://github.com/AstroArbaaz/new-nodejs-backend-design-learning#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "morgan": "^1.10.0",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.15"
+  }
+}
