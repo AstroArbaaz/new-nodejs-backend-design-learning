@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon",
+    "devStart": "nodemon -L",
     "start": "node server.js"
   },
   "repository": {
@@ -30,9 +30,12 @@
   },
   "homepage": "https://github.com/AstroArbaaz/new-nodejs-backend-design-learning#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cuid": "^2.1.8",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "joi": "^17.6.0",
     "mongoose": "^6.2.10",
     "morgan": "^1.10.0",
     "winston": "^3.7.2"
