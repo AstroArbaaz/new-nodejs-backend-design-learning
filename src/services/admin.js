@@ -30,7 +30,7 @@ exports.registerAdmin = async (req, res) => {
             );
         }
 
-        const findAdminByEmail = await adminModel.find({ email: newAdmin.value.email });
+        const findAdminByEmail = await adminModel.findOne({ email: newAdmin.value.email });
         if (findAdminByEmail) {
             return res.status(406).json(
                 {
@@ -39,7 +39,7 @@ exports.registerAdmin = async (req, res) => {
             );
         }
 
-        const findAdminByContactNumber = await adminModel.find({ contactNumber: newAdmin.value.contactNumber });
+        const findAdminByContactNumber = await adminModel.findOne({ contactNumber: newAdmin.value.contactNumber });
         if (findAdminByContactNumber) {
             return res.status(406).json(
                 {
@@ -60,15 +60,112 @@ exports.registerAdmin = async (req, res) => {
 
         const newAdminDetails = await dataObjects.createNewAdmin(newAdmin.value);
 
-        return res.status(200).json(
+        return res.status(201).json(
             {
                 newAdmin: newAdminDetails,
             },
         );
     } catch (error) {
-        logger.error("register-error", error);
+        // logger.error("register-error", error);
         return res.status(500).json({
             message: "Cannot Register",
+            error: error.message,
+        });
+    }
+};
+
+exports.getAdminByEmail = async (req, res) => {
+    try {
+        const adminEmail = req.params.email;
+        const adminDetail = await dataObjects.getAdminViaEmail(adminEmail);
+        if (adminDetail === null) {
+            // logger.error("No details Found");
+            return res.status(204).json(
+                {
+                    message: "no details found",
+                },
+            );
+        } if (adminDetail.error) {
+            // logger.error(details.error);
+            return res.status(400).json(
+                {
+                    error: adminDetail.error,
+                },
+            );
+        }
+        return res.status(200).json(
+            {
+                adminDetail,
+            },
+        );
+    } catch (error) {
+        logger.error("admin-email-search-error", error);
+        return res.status(500).json({
+            message: "Something Went Wrong!",
+            error: error.message,
+        });
+    }
+};
+
+exports.getAdminByContactNumber = async (req, res) => {
+    try {
+        const adminContactNumber = req.body.number;
+        const adminDetail = await dataObjects.getAdminViaContactNumber(adminContactNumber);
+        if (adminDetail === null) {
+            // logger.error("No details Found");
+            return res.status(204).json(
+                {
+                    message: "no details found",
+                },
+            );
+        } if (adminDetail.error) {
+            // logger.error(details.error);
+            return res.status(400).json(
+                {
+                    error: adminDetail.error,
+                },
+            );
+        }
+        return res.status(200).json(
+            {
+                adminDetail,
+            },
+        );
+    } catch (error) {
+        logger.error("admin-contact-number-search-error", error);
+        return res.status(500).json({
+            message: "Something Went Wrong!",
+            error: error.message,
+        });
+    }
+};
+
+// get all admin details
+exports.getAllAdmins = async (req, res) => {
+    try {
+        const details = await dataObjects.getAllAdmins();
+        if (details.length === 0) {
+            // logger.error("No details Found");
+            return res.status(204).json(
+                {
+                    message: "no details found",
+                },
+            );
+        } if (details.error) {
+            // logger.error(details.error);
+            return res.status(400).json(
+                {
+                    error: details.error,
+                },
+            );
+        }
+        return res.status(200).json({
+            details,
+        });
+    } catch (error) {
+        // logger.error("register-error", error);
+        return res.status(500).json({
+            message: "Something Went Wrong",
             error: error.message,
         });
     }
